@@ -1,5 +1,10 @@
 import { StyleSheet, Text, View, SafeAreaView, StatusBar, Image, TouchableOpacity } from 'react-native';
 import * as Linking from "expo-linking";
+import FirstLine from "./src/components/Dot/FirstLine"
+import SecondLine from "./src/components/Dot/SecondLine";
+import ThirdLine from "./src/components/Dot/ThirdLine";
+import FourthLine from "./src/components/Dot/FourthLine";
+import FifthLine from "./src/components/Dot/FifthLine"
 
 const colorGithub = "#010409"
 const colorFontGithub = "#C9D1D9"
@@ -31,9 +36,18 @@ export default function App() {
           Estudante de Sistemas de Informação na Universidade de Pernambuco e
           Desenvolvedor Full-Stack em formação.
         </Text>
-        <TouchableOpacity style={styles.button}
-          onPress={handlePressToGithub}>
-          <Text style={[styles.defaultText, styles.textButton]}>Open in Github</Text>
+        <View style={styles.contentGithubStats}>
+          <FirstLine />
+          <SecondLine />
+          <ThirdLine />
+          <FourthLine />
+          <FifthLine />
+          <FirstLine />
+        </View>
+        <TouchableOpacity style={styles.button} onPress={handlePressToGithub}>
+          <Text style={[styles.defaultText, styles.textButton]}>
+            Open in Github
+          </Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
@@ -82,4 +96,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 16
   },
+  contentGithubStats: {
+    marginTop: 20,
+  }
 });
