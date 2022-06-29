@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { StyleSheet, View, Image, TouchableOpacity, Alert } from "react-native";
-import { Camera, CameraType } from "expo-camera";
+import { StyleSheet, View, Image, TouchableOpacity} from "react-native";
+import * as Shake from "expo-shake";
 
 export default function App() {
   const [toggle, setToggle] = useState(false);
@@ -8,16 +8,20 @@ export default function App() {
   const handleOnPress = () => setToggle(!toggle);
 
   useEffect(() => {
-    //liga flash do celular
-    // Alert.alert('atualizou ' + toggle)
-    
+    //trocar estado da lanterna
   }, [toggle]);
+
+  useEffect(() => {
+    Shake.addListener(() => {
+      setToggle(!toggle);
+    });
+
+    return Shake.removeSubscription(() => {});
+  });
 
   return (
     <View style={toggle ? styles.containerLight : styles.container}>
-      <TouchableOpacity
-        onPress={handleOnPress}
-      >
+      <TouchableOpacity onPress={handleOnPress}>
         <Image
           style={toggle ? styles.lightingOn : styles.lightingOff}
           source={
