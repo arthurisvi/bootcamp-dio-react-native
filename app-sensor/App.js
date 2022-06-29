@@ -1,23 +1,38 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, View, Image, TouchableOpacity } from "react-native";
+import { useState, useEffect } from "react";
+import { StyleSheet, View, Image, TouchableOpacity, Alert } from "react-native";
+import { Camera, CameraType } from "expo-camera";
 
 export default function App() {
-  const toggle = false; //false
+  const [toggle, setToggle] = useState(false);
+
+  const handleOnPress = () => setToggle(!toggle);
+
+  useEffect(() => {
+    //liga flash do celular
+    // Alert.alert('atualizou ' + toggle)
+    
+  }, [toggle]);
 
   return (
     <View style={toggle ? styles.containerLight : styles.container}>
-      <TouchableOpacity onPress ={ () => {}}>
+      <TouchableOpacity
+        onPress={handleOnPress}
+      >
         <Image
           style={toggle ? styles.lightingOn : styles.lightingOff}
-          source={require(toggle
-            ? "./assets/icons/eco-light.png"
-            : "./assets/icons/eco-light-off.png")}
+          source={
+            toggle
+              ? require("./assets/icons/eco-light.png")
+              : require("./assets/icons/eco-light-off.png")
+          }
         />
         <Image
           style={styles.dioLogo}
-          source={require(toggle
-            ? "./assets/icons/logo-dio.png"
-            : "./assets/icons/logo-dio-white.png")}
+          source={
+            toggle
+              ? require("./assets/icons/logo-dio.png")
+              : require("./assets/icons/logo-dio-white.png")
+          }
         />
       </TouchableOpacity>
     </View>
